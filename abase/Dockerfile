@@ -20,7 +20,7 @@ RUN apk update \
 
 COPY rootfs/ /
 
-EXPOSE 22 3000
+EXPOSE 22
 ENTRYPOINT ["/init"]
 
 
