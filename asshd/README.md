@@ -1,5 +1,5 @@
 # asshd
-sshd Alpine Dockerfile
+sshd based on Alpine Linux
 
 #Usage
 
@@ -8,7 +8,7 @@ sshd Alpine Dockerfile
 $ docker run -d --name sshd -p 8022:22 daewood/asshd
 You can also specify the database repository where to store the data with the volume -v option:
 ```
-$ docker run -d --name sshd -p 27017:27017 \
+$ docker run -d --name sshd -p 8022:22 \
   -v /somewhere:/data/ \
   daewood/asshd
 To run a shell session:
