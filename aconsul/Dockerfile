@@ -21,7 +21,7 @@ RUN mkdir -p /var/lib/consul && \
     curl -sSL https://releases.hashicorp.com/consul-template/${CONSULTEMPLATE_VERSION}/consul-template_${CONSULTEMPLATE_VERSION}_linux_amd64.zip -o /tmp/consul-template.zip && \
     unzip /tmp/consul-template.zip -d /bin && \
     rm /tmp/consul-template.zip && \
-    apk del zip && \
+    apk del zip curl && \
     rm -rf /var/cache/apk/*
 
 COPY rootfs/ /
