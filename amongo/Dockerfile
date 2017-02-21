@@ -12,5 +12,5 @@ COPY rootfs/ /
 ENTRYPOINT ["/init"]
 CMD []
 
-EXPOSE 27o17
+EXPOSE 27017
 VOLUME ["/data/db"]
