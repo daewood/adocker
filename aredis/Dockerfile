@@ -1,13 +1,13 @@
-FROM alpine:edge
+FROM daewood/abase
 
 MAINTAINER daewood <daewood@qq.com>
 
-RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk add --update redis \
+RUN apk --update add redis \
     && rm -rf /var/cache/apk/* 
 
-WORKDIR /data
+COPY rootfs/ /
+
 EXPOSE 6379
-COPY redis.conf /etc/redis.conf
-CMD [ "redis-server", "/etc/redis.conf" ]
+VOLUME [ "/data"]
+ENTRYPOINT ["/init"]
 
