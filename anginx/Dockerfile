@@ -1,5 +1,4 @@
 FROM daewood/abase
-
 MAINTAINER daewood <daewood@qq.com>
 
 RUN mkdir -p /var/www && \

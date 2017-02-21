@@ -7,8 +7,9 @@ RUN apk --update add redis \
 
 COPY rootfs/ /
 
-EXPOSE 6379
-VOLUME [ "/data"]
-WORKDIR /data
 ENTRYPOINT ["/init"]
+CMD []
+
+EXPOSE 6379
+VOLUME ["/data"]
 

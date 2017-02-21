@@ -1,3 +1,3 @@
 #!/usr/bin/with-contenv sh
-cd /data
-exec redis-server /etc/redis.conf
+
+exec s6-setuidgid redis /usr/bin/redis-server /etc/redis.conf
