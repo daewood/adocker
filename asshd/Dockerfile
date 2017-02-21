@@ -2,7 +2,7 @@ FROM daewood/abase
 
 MAINTAINER daewood <daewood@qq.com>
 
-RUN apk add openssh \
+RUN apk --update add openssh \
   && sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
   && echo "root:root" | chpasswd \
   && rm -rf /var/cache/apk/* \
