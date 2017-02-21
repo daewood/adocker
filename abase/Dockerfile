@@ -11,16 +11,13 @@ ENV S6OVERLAY_VERSION=v1.19.1.1 \
 	
 RUN apk update \
     && apk upgrade \
-    && apk add git openssh curl \
+    && apk add curl \
 	&& curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xz -C / \
-	&& sed -i s/#PermitRootLogin.*/PermitRootLogin\ yes/ /etc/ssh/sshd_config \
-	&& echo "root:docker" | chpasswd \
-	&& ssh-keygen -A \
-    && rm -rf /var/cache/apk/*
+    && apk del curl \
+	&& rm -rf /var/cache/apk/* /src
 
 COPY rootfs/ /
 
-EXPOSE 22
 ENTRYPOINT ["/init"]
 
 
