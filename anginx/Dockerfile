@@ -1,18 +1,21 @@
-FROM alpine:edge
+FROM daewood/abase
 
 MAINTAINER daewood <daewood@qq.com>
 
-RUN echo "@testing http://dl-4.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories \
-    && apk add --update nginx \
-    && rm -rf /var/cache/apk/* \
-	## forward request and error logs to docker log collector
-	&& ln -sf /dev/stdout /var/log/nginx/access.log \
-	&& ln -sf /dev/stderr /var/log/nginx/error.log
+RUN mkdir -p /var/www && \
+    addgroup -g 82 -S www-data && \
+    adduser -u 82 -S -D -g "" -G www-data www-data && \
+    chown www-data:www-data /var/www && \
+	apk add --update nginx && \
+    ln -sf /dev/stdout /var/log/nginx/access.log && \
+    ln -sf /dev/stderr /var/log/nginx/error.log && \
+    rm -rf /var/cache/apk/*
 
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
+COPY rootfs/ /
+
+ENTRYPOINT ["/init"]
+CMD []
 
 EXPOSE 80 443
-
-CMD ["nginx", "-g", "daemon off;"]
+VOLUME ["/var/www"]
 
