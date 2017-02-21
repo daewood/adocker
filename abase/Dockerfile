@@ -1,5 +1,4 @@
 FROM alpine:edge
-
 MAINTAINER daewood <daewood@qq.com>
 
 ENV S6OVERLAY_VERSION=v1.19.1.1 \
@@ -11,9 +10,8 @@ ENV S6OVERLAY_VERSION=v1.19.1.1 \
 	
 RUN apk update \
     && apk upgrade \
-    && apk add curl \
+    && apk add bash bind-tools ca-certificates curl \
 	&& curl -sSL https://github.com/just-containers/s6-overlay/releases/download/${S6OVERLAY_VERSION}/s6-overlay-amd64.tar.gz | tar xz -C / \
-    && apk del curl \
 	&& rm -rf /var/cache/apk/* /src
 
 COPY rootfs/ /
