@@ -10,4 +10,4 @@ ENTRYPOINT ["/init"]
 CMD []
 
 EXPOSE 3306
-VOLUME ["/mysql"]
+VOLUME ["/var/lib/mysql"]

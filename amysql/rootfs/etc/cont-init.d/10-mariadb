@@ -28,7 +28,7 @@ if [ -z "${MARIADB_CONFIG}" ]; then
 
         mkdir -p /var/run/mysqld
         chown -R mysql:root /var/run/mysqld
-        mysql_install_db --basedir=/usr --datadir=/mysql --user=mysql --console
+        mysql_install_db --basedir=/usr --datadir=/var/lib/mysql --user=mysql --console
 
         /usr/bin/mysqld_safe --skip-networking &
 
